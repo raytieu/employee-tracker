@@ -59,11 +59,6 @@ function addEmployees() {
     },
     {
       type: "input",
-      name: "department",
-      message: "Employee's department"
-    },
-    {
-      type: "input",
       name: "roleID",
       message: "Role ID:"
     },
@@ -79,7 +74,6 @@ function addEmployees() {
       {
         first_name: data.firstName,
         last_name: data.lastName,
-        department: data.department,
         role_id: data.roleID,
         manager_id: data.managerID
       },
@@ -88,8 +82,10 @@ function addEmployees() {
         console.log(res.affectedRows + " employee inserted!\n");
       }
     );
+
     console.log(query.sql);
     addViewUpdate();
+
   });
 }
   
@@ -137,7 +133,7 @@ function updateEmployees() {
           manager_id: data.managerID
         },
         {
-          id
+          id 
         }
       ],
       function(err, res) {
@@ -148,5 +144,6 @@ function updateEmployees() {
   
   console.log(query.sql);
   addViewUpdate();
+
   });
 }
