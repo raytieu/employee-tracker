@@ -1,6 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require("mysql");
-const consoleTable = require("console.table");
+require("console.table");
 
 const connection = mysql.createConnection({
   host: "localhost",
@@ -24,7 +24,8 @@ function addViewUpdate() {
       choices: [
         "Add departments, roles, employees",
         "View departments, roles, employees",
-        "Update employee roles"
+        "Update employee roles",
+        "Exit program"
       ]
     }
   ]).then(function(answer) {
@@ -37,6 +38,9 @@ function addViewUpdate() {
     }
     else if (choice === "Update employee roles") {
       updateEmployees();
+    }
+    else if (choice ==="Exit program") {
+      connection.end();
     }
   });
 }
@@ -55,6 +59,11 @@ function addEmployees() {
     },
     {
       type: "input",
+      name: "department",
+      message: "Employee's department"
+    },
+    {
+      type: "input",
       name: "roleID",
       message: "Role ID:"
     },
@@ -70,6 +79,7 @@ function addEmployees() {
       {
         first_name: data.firstName,
         last_name: data.lastName,
+        department: data.department,
         role_id: data.roleID,
         manager_id: data.managerID
       },
@@ -78,9 +88,8 @@ function addEmployees() {
         console.log(res.affectedRows + " employee inserted!\n");
       }
     );
-
     console.log(query.sql);
-
+    addViewUpdate();
   });
 }
   
@@ -88,8 +97,8 @@ function viewEmployees() {
   console.log("Selecting all employees...\n");
   connection.query("SELECT * FROM employee", function(err, res) {
     if (err) throw err;
-    console.log(res);
-    connection.end();
+    console.table(res);
+    addViewUpdate();
   });
 }
 
@@ -128,7 +137,7 @@ function updateEmployees() {
           manager_id: data.managerID
         },
         {
-          id: 
+          id
         }
       ],
       function(err, res) {
@@ -138,6 +147,6 @@ function updateEmployees() {
     );
   
   console.log(query.sql);
-
+  addViewUpdate();
   });
 }
