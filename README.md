@@ -25,3 +25,8 @@ This Employee Tracker program is a node.js-based application which allows users 
 https://github.com/raytieu/employee-tracker
 
 
+## Video Walkthrough:
+
+https://drive.google.com/file/d/1xEAsOhfQ33ef9Tkqgj0Mow0Jd82PfrIA/view
+
+
