@@ -59,6 +59,11 @@ function addEmployees() {
     },
     {
       type: "input",
+      name: "departmentName",
+      message: "Employee's department"
+    },
+    {
+      type: "input",
       name: "roleID",
       message: "Role ID:"
     },
@@ -74,6 +79,7 @@ function addEmployees() {
       {
         first_name: data.firstName,
         last_name: data.lastName,
+        department_name: data.departmentName,
         role_id: data.roleID,
         manager_id: data.managerID
       },
@@ -103,6 +109,11 @@ function updateEmployees() {
   inquirer.prompt([
     {
       type: "input",
+      name: "id_update",
+      message: "Enter id of employee to update:"
+    },
+    {
+      type: "input",
       name: "firstName",
       message: "Employee's first name:"
     },
@@ -110,6 +121,11 @@ function updateEmployees() {
       type: "input",
       name: "lastName",
       message: "Employee's last name"
+    },
+    {
+      type: "input",
+      name: "departmentName",
+      message: "Employee's department"
     },
     {
       type: "input",
@@ -129,11 +145,12 @@ function updateEmployees() {
         {
           first_name: data.firstName,
           last_name: data.lastName,
+          department_name: data.departmentName,
           role_id: data.roleID,
           manager_id: data.managerID
         },
         {
-          id 
+          id: data.id_update 
         }
       ],
       function(err, res) {
